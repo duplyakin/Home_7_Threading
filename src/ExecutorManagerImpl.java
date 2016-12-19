@@ -15,7 +15,7 @@ public class ExecutorManagerImpl {
             if (context.isInterrupted()) {
                 context.setInterruptedTaskCount(tasks.length - index);
                 if (index == 1) {
-                    context.finish();
+                    context.finish(); // все задачи отменены, ни одна не началась
                 }
                 break;   // leave for-loop
             }
@@ -33,7 +33,7 @@ public class ExecutorManagerImpl {
                     int completedTaskCount = context.getCompletedTaskCount();
                     context.setFailedTaskCount(completedTaskCount);
                     if (tasks.length == context.getCompletedTaskCount()) {
-                        context.finish();
+                        context.finish(); // все задачи выполнены
                     }
                     if (tasks.length - context.getInterruptedTaskCount() == context.getCompletedTaskCount()) {
                         callback.run();
