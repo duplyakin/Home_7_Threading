@@ -8,13 +8,6 @@ public interface Context {
 
     int getInterruptedTaskCount();
 
-    void setCompletedTaskCount(int completedTaskCount);
-
-    void setFailedTaskCount(int failedTaskCount);
-
-    void setInterruptedTaskCount(int interruptedTaskCount);
-
-
     boolean isFinished();
 
     void finish();

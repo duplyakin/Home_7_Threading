@@ -7,13 +7,13 @@ public class ExecutorManagerImpl {
     }
 
     Context execute(final Runnable callback, Runnable... tasks) {
-        final Context context = new ContextImpl();
+        final ContextImpl context = new ContextImpl();
 
         int index = 0;
         for (final Runnable task : tasks) {
             ++index;
             if (context.isInterrupted()) {
-                context.setInterruptedTaskCount(tasks.length - index);
+                context.setInterruptedTaskCount(tasks.length - index + 1);
                 if (index == 1) {
                     context.finish(); // все задачи отменены, ни одна не началась
                 }
@@ -40,9 +40,6 @@ public class ExecutorManagerImpl {
                     }
                 }
             });
-            thread.start();
-
-
             thread.start();
         }
         return context;
