@@ -10,8 +10,6 @@ public interface Context {
 
     boolean isFinished();
 
-    void finish();
-
     boolean isInterrupted();
 
     void interrupt();

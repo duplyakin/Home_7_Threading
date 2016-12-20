@@ -7,12 +7,19 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 public class Test {
 
+
+    static final Random random=new Random(System.currentTimeMillis());
+
     static Runnable makeTask(int N, int time) {
         return () -> {
             System.out.println("Start: " + N);
 
             try {
                 Thread.sleep(time);
+                int rnd = random.nextInt(5);
+                if(rnd==4){
+                    throw new RuntimeException("Oops, I did it again");
+                }
             } catch (InterruptedException e) {
                 Thread.interrupted();
             }
